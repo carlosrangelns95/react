@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
@@ -14,6 +15,14 @@ export function Post(props) {
     locale: ptBR,
     addSuffix: true,
   })
+
+  const [comments, setComent] = useState([1, 2])
+
+  function handleCreateNewComment(evt) {
+    evt.preventDefault()
+    comments.push(3)
+    console.log('nhãaaaaaa')
+  }
 
   return (
     <article className={styles.post}>
@@ -41,7 +50,7 @@ export function Post(props) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={ handleCreateNewComment } className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea placeholder='Deixe seu comentário' />
 
@@ -51,9 +60,13 @@ export function Post(props) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+
+        {
+          comments.map(comment => {
+            return <Comment />
+          })
+        }
+
       </div>
 
     </article >
