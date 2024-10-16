@@ -10,18 +10,15 @@ export function Post(props) {
   // const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
   //   locale: ptBR,
   // })
-
   // const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
   //   locale: ptBR,
   //   addSuffix: true,
   // })
-
   // const [comments, setComent] = useState([1, 2])
-
   function handleCreateNewComment(evt) {
-    evt.preventDefault()
-    comments.push(3)
-    console.log('nhãaaaaaa')
+    // evt.preventDefault()
+    // comments.push(3)
+    // console.log('nhãaaaaaa')
   }
 
   return (
@@ -41,13 +38,13 @@ export function Post(props) {
       </header>
 
       <div className={styles.content}>
-        {/* {props.content.map(line => {
+        {props.content.map(line => {
           if (line.type === 'paragraph') {
             return <p>{line.content}</p>
           } else {
             return <p><a>{line.content}</a></p>
           }
-        })} */}
+        })}
       </div>
 
       <form onSubmit={ handleCreateNewComment } className={styles.commentForm}>
@@ -62,7 +59,7 @@ export function Post(props) {
       <div className={styles.commentList}>
 
         {/* {
-          props.comments.map(comment => {
+          props.content.map(comment => {
             return <Comment />
           })
         } */}

@@ -13,9 +13,9 @@ const posts = [
       role: 'Developer',
     },
     content: [
-      { type: 'paragraph', content: 'Bom dia' },
-      { type: 'paragraph', content: 'Acabei de fazer mais uma pizza. Venham experimentar!' },
-      { type: 'link', content: 'carlos.design/doctorcare' }
+      { type: 'paragraph', content: 'Bom dia!' },
+      { type: 'paragraph', content: 'Acabei de voltar do shopping. Que filme bom esse do Dead Pool!' },
+      { type: 'link', content: '#deadPoolAndWolverineForever' }
     ],
     publishedAt: new Date('2022-05-03 20:00:00')
   },
@@ -28,8 +28,8 @@ const posts = [
       role: 'Chef',
     },
     content: [
-      { type: 'paragraph', content: '?' },
-      { type: 'paragraph', content:  'Já fez a task de relatórios?' },
+      // { type: 'paragraph', content: '?' },
+      { type: 'paragraph', content:  'E a task, já fez?' },
       { type: 'link', content: 'ivancicley.design/doctorcare' }
     ],
     publishedAt: new Date('2024-08-19 16:40:00')

@@ -3,7 +3,7 @@ import { Avatar } from './Avatar'
 
 import styles from './comment.module.css'
 
-export function Comment() {
+export function Comment(props) {
     return (
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://avatars.githubusercontent.com/u/166733735?v=4" />
