@@ -7,23 +7,29 @@ import ptBR from 'date-fns/locale/pt-BR'
 import styles from './Post.module.css'
 
 export function Post(props) {
+  // const [comments, setComent] = useState([])
+
+
+
   // const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
   //   locale: ptBR,
   // })
+
   // const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
   //   locale: ptBR,
   //   addSuffix: true,
   // })
-  // const [comments, setComent] = useState([1, 2])
-  function handleCreateNewComment(evt) {
-    // evt.preventDefault()
-    // comments.push(3)
-    // console.log('nhãaaaaaa')
-  }
+  // function handleCreateNewComment(evt) {
+  //   evt.preventDefault()
+  //   comments.push(3)
+  //   console.log('nhãaaaaaa')
+  // }
 
   return (
     <article className={styles.post}>
+
       <header>
+
         <div className={styles.author}>
           <Avatar src={props.author.avatarUrl} />
           <div className={styles.authorInfo}>
@@ -32,9 +38,10 @@ export function Post(props) {
           </div>
         </div>
 
-        <time title={'2024-10-16'} dateTime={'2024-10-16'}>
+        <time title={'publishedDateFormatted'} dateTime={'publishedDateFormatted'}>
           {'publicado a 1h'}
         </time>
+
       </header>
 
       <div className={styles.content}>
@@ -47,7 +54,7 @@ export function Post(props) {
         })}
       </div>
 
-      <form onSubmit={ handleCreateNewComment } className={styles.commentForm}>
+      <form className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea placeholder='Deixe seu comentário' />
 
@@ -58,11 +65,11 @@ export function Post(props) {
 
       <div className={styles.commentList}>
 
-        {/* {
-          props.content.map(comment => {
+        {
+          props.content.map((comment) => {
             return <Comment />
           })
-        } */}
+        }
 
       </div>
 
