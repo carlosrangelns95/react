@@ -6,24 +6,27 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 import styles from './Post.module.css'
 
-export function Post(props) {
+// author: { avatar_url: "", name: "", role: ""}
+// publishedAt: Date
+// content: ""
+
+export function Post({ author, content, comments, publishedAt }) {
+  const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
   // const [comments, setComent] = useState([])
-
-
-
-  // const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
-  //   locale: ptBR,
-  // })
-
-  // const publishedDateRelativeToNow = formatDistanceToNow(props.publishedAt, {
-  //   locale: ptBR,
-  //   addSuffix: true,
-  // })
   // function handleCreateNewComment(evt) {
   //   evt.preventDefault()
   //   comments.push(3)
   //   console.log('nhãaaaaaa')
   // }
+
 
   return (
     <article className={styles.post}>
@@ -31,21 +34,21 @@ export function Post(props) {
       <header>
 
         <div className={styles.author}>
-          <Avatar src={props.author.avatarUrl} />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>{props.author.name}</strong>
-            <span>{props.author.role}</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title={'publishedDateFormatted'} dateTime={'publishedDateFormatted'}>
-          {'publicado a 1h'}
+        <time title={publishedAtFormatted} dateTime={publishedAt.toISOString()}>
+          {publishedDateRelativeToNow}
         </time>
 
       </header>
 
       <div className={styles.content}>
-        {props.content.map(line => {
+        {content.map(line => {
           if (line.type === 'paragraph') {
             return <p>{line.content}</p>
           } else {
@@ -66,8 +69,13 @@ export function Post(props) {
       <div className={styles.commentList}>
 
         {
-          props.content.map((comment) => {
-            return <Comment />
+          comments.map((comment) => {
+            return (
+              <Comment
+                author={comment.author}
+                content={comment.content}
+                avatar={comment.avatar}
+              />)
           })
         }
 

@@ -4,6 +4,11 @@ import { Sidebar } from "./components/Sidebar"
 import styles from './App.module.css'
 import './global.css'
 
+
+// author: { avatar_url: "", name: "", role: ""}
+// publishedAt: Date
+// content: "" 
+
 const posts = [
   {
     id: 1,
@@ -17,22 +22,28 @@ const posts = [
       { type: 'paragraph', content: 'Acabei de voltar do shopping. Que filme bom esse do Dead Pool!' },
       { type: 'link', content: '#deadPoolAndWolverineForever' }
     ],
-    publishedAt: new Date('2022-05-03 20:00:00')
+    publishedAt: new Date('2022-05-03 20:00:00'),
+    comments: [
+      { author: 'Ivancicley', avatar: 'https://avatars.githubusercontent.com/u/449953?v=4', content: 'Bom dia! E a task, já fez?' },
+      { author: 'Carlos Rangel', avatar: 'https://avatars.githubusercontent.com/u/166733735?v=4', content: '🤡' },
+    ]
   },
-
   {
-    id: 1,
+    id: 2,
     author: {
       avatarUrl: 'https://avatars.githubusercontent.com/u/449953?v=4',
       name: 'Ivancicley',
-      role: 'Chef',
+      role: 'Dev Senior',
     },
     content: [
-      // { type: 'paragraph', content: '?' },
-      { type: 'paragraph', content:  'E a task, já fez?' },
-      { type: 'link', content: 'ivancicley.design/doctorcare' }
+      { type: 'paragraph', content: 'Aula de Muaitay concluída com sucesso!' },
+      { type: 'link', content: '#faixa preta' }
     ],
-    publishedAt: new Date('2024-08-19 16:40:00')
+    publishedAt: new Date('2022-05-03 20:00:00'),
+    comments: [
+      { author: 'Carlos Rangel', avatar: 'https://avatars.githubusercontent.com/u/166733735?v=4', content: 'Tô terminando a task, viu?' },
+      { author: 'Ivancicley', avatar: 'https://avatars.githubusercontent.com/u/449953?v=4', content: 'Certo!' },
+    ]
   },
 ]
 
@@ -43,14 +54,19 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author= {posts[0].author}
-            content= {posts[0].content}
-          />
-          <Post
-            author= {posts[1].author}
-            content= {posts[1].content}
-          />
+
+          {
+            posts.map(post => {
+              return (
+                <Post
+                  author={post.author}
+                  content={post.content}
+                  comments={post.comments}
+                  publishedAt={post.publishedAt}
+                />)
+            })
+          }
+
         </main>
       </div>
     </>
