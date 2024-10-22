@@ -2,17 +2,24 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from './Avatar'
 
 import styles from './comment.module.css'
+import { useState } from 'react'
 
-export function Comment(props) {
+export function Comment({ content }) {
+    const [aplausos, setAplausos] = useState(0);
+
+    function addAplauso() {
+        setAplausos(aplausos + 1)
+    }
+
     return (
         <div className={styles.comment}>
-            <Avatar hasBorder={false} src={props.avatar} />
+            <Avatar hasBorder={false} src={/*props.avatar*/ 'https://avatars.githubusercontent.com/u/166733735?v=4'} />
 
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
                         <div className={styles.authorAndTime}>
-                            <strong>{props.author}</strong>
+                            <strong>{/*props.author*/ 'Carlos Rangel'}</strong>
                             <time title="11 de Maio às 08:13h" dateTime="2022-05-11 08:13:00">Cerca de 1h atrás</time>
                         </div>
 
@@ -20,13 +27,13 @@ export function Comment(props) {
                             <Trash size={20} />
                         </button>
                     </header>
-                    <p>{props.content}</p>
+                    <p>{content}</p>
                 </div>
                 <footer>
-                    <button>
+                    <button onClick={addAplauso}>
                         <ThumbsUp />
                         Aplaudir
-                        <span>20</span>
+                        <span>{aplausos}</span>
                     </button>
                 </footer>
             </div>

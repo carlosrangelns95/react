@@ -37,7 +37,7 @@ const posts = [
     },
     content: [
       { type: 'paragraph', content: 'Aula de Muaitay concluída com sucesso!' },
-      { type: 'link', content: '#faixa preta' }
+      { type: 'link', content: '#faixapreta' }
     ],
     publishedAt: new Date('2022-05-03 20:00:00'),
     comments: [

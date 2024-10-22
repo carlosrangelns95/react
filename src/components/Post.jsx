@@ -6,11 +6,9 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 import styles from './Post.module.css'
 
-// author: { avatar_url: "", name: "", role: ""}
-// publishedAt: Date
-// content: ""
 
-export function Post({ author, content, comments, publishedAt }) {
+
+export function Post({ author, content, /*comments,*/ publishedAt }) {
   const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
     locale: ptBR
   })
@@ -20,19 +18,26 @@ export function Post({ author, content, comments, publishedAt }) {
     addSuffix: true,
   })
 
-  // const [comments, setComent] = useState([])
-  // function handleCreateNewComment(evt) {
-  //   evt.preventDefault()
-  //   comments.push(3)
-  //   console.log('nhãaaaaaa')
-  // }
+  const [comments, setComment] = useState([]);
+  const [newCommentText, setNewCommentText] = useState('');
+
+
+  function handleCreateNewComment(evt) {
+    evt.preventDefault();
+    setComment([...comments, newCommentText]);
+    setNewCommentText('');
+  }
+
+  function handleNewCommentChange(evt) {
+    setNewCommentText(evt.target.value);
+  }
+
 
 
   return (
     <article className={styles.post}>
 
       <header>
-
         <div className={styles.author}>
           <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
@@ -44,7 +49,6 @@ export function Post({ author, content, comments, publishedAt }) {
         <time title={publishedAtFormatted} dateTime={publishedAt.toISOString()}>
           {publishedDateRelativeToNow}
         </time>
-
       </header>
 
       <div className={styles.content}>
@@ -57,9 +61,14 @@ export function Post({ author, content, comments, publishedAt }) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea placeholder='Deixe seu comentário' />
+        <textarea
+          placeholder='Deixe seu comentário'
+          name='comment'
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Comentar</button>
@@ -72,10 +81,9 @@ export function Post({ author, content, comments, publishedAt }) {
           comments.map((comment) => {
             return (
               <Comment
-                author={comment.author}
-                content={comment.content}
-                avatar={comment.avatar}
-              />)
+                content={comment}
+              />
+            )
           })
         }
 
