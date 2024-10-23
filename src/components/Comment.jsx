@@ -4,15 +4,15 @@ import { Avatar } from './Avatar'
 import styles from './comment.module.css'
 import { useState } from 'react'
 
-export function Comment({ content }) {
+export function Comment({ content, onDeleteComment }) {
     const [aplausos, setAplausos] = useState(0);
 
     function addAplauso() {
         setAplausos(aplausos + 1)
     }
 
-    function onDeleteComment(){
-        console.log(`deletar comentário: "${ content }"`);
+    function handleDeleteComment() {
+        onDeleteComment(content);
     }
 
     return (
@@ -29,7 +29,7 @@ export function Comment({ content }) {
 
                         <button
                             title='Deletar comentário'
-                            onClick={ onDeleteComment }
+                            onClick={handleDeleteComment}
                         >
                             <Trash size={20} />
                         </button>

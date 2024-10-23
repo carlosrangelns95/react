@@ -6,7 +6,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 import styles from './Post.module.css'
 
- //usando "handle" antes do nome da função para eventos disparadas pelo usuário
+//usando "handle" antes do nome da função para eventos disparadas pelo usuário
 
 export function Post({ author, content, /*comments,*/ publishedAt }) {
   const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -33,6 +33,13 @@ export function Post({ author, content, /*comments,*/ publishedAt }) {
     setNewCommentText(evt.target.value);
   }
 
+  function deleteComment(commentToDelete) {
+    const commentsWithoutDeletedOne = comments.filter( comment => {
+      return comment !== commentToDelete;
+    })
+    
+    setComment(commentsWithoutDeletedOne);
+  }
 
 
   return (
@@ -82,7 +89,8 @@ export function Post({ author, content, /*comments,*/ publishedAt }) {
           comments.map((comment, index) => {
             return (
               <Comment
-              key={index}
+                onDeleteComment={deleteComment}
+                key={index}
                 content={comment}
               />
             )
