@@ -6,7 +6,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 
 import styles from './Post.module.css'
 
-
+ //usando "handle" antes do nome da função para eventos disparadas pelo usuário
 
 export function Post({ author, content, /*comments,*/ publishedAt }) {
   const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -27,6 +27,7 @@ export function Post({ author, content, /*comments,*/ publishedAt }) {
     setComment([...comments, newCommentText]);
     setNewCommentText('');
   }
+
 
   function handleNewCommentChange(evt) {
     setNewCommentText(evt.target.value);
@@ -52,11 +53,11 @@ export function Post({ author, content, /*comments,*/ publishedAt }) {
       </header>
 
       <div className={styles.content}>
-        {content.map(line => {
+        {content.map((line, index) => {
           if (line.type === 'paragraph') {
-            return <p>{line.content}</p>
+            return <p key={index}>{line.content}</p>
           } else {
-            return <p><a>{line.content}</a></p>
+            return <p key={index}><a>{line.content}</a></p>
           }
         })}
       </div>
@@ -78,9 +79,10 @@ export function Post({ author, content, /*comments,*/ publishedAt }) {
       <div className={styles.commentList}>
 
         {
-          comments.map((comment) => {
+          comments.map((comment, index) => {
             return (
               <Comment
+              key={index}
                 content={comment}
               />
             )

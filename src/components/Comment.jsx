@@ -11,6 +11,10 @@ export function Comment({ content }) {
         setAplausos(aplausos + 1)
     }
 
+    function onDeleteComment(){
+        console.log(`deletar comentário: "${ content }"`);
+    }
+
     return (
         <div className={styles.comment}>
             <Avatar hasBorder={false} src={/*props.avatar*/ 'https://avatars.githubusercontent.com/u/166733735?v=4'} />
@@ -23,7 +27,10 @@ export function Comment({ content }) {
                             <time title="11 de Maio às 08:13h" dateTime="2022-05-11 08:13:00">Cerca de 1h atrás</time>
                         </div>
 
-                        <button title='Deletar comentário'>
+                        <button
+                            title='Deletar comentário'
+                            onClick={ onDeleteComment }
+                        >
                             <Trash size={20} />
                         </button>
                     </header>
